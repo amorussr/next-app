@@ -61,7 +61,7 @@ export default function Service({ service }) {
 
           }
           .service__name {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-family: 'Merriweather', serif;
             color: white;
             margin-bottom: 1rem;
@@ -82,7 +82,7 @@ export default function Service({ service }) {
           .service__child_name {
             display: inline-block;
             padding: 0.5rem 1rem;
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             border-radius: 0.75rem;
             margin: 0;
             background: #323537;
