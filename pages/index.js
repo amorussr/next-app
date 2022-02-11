@@ -51,7 +51,7 @@ export default function Home({services}) {
         }
 
         .item {
-          min-width: 22rem;
+          width: calc(100vw - 2rem);
           height: 100%;
           max-height: calc(100vh - 5rem);
           overflow: hidden;
