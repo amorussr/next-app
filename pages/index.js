@@ -1,55 +1,24 @@
 import Head from 'next/head'
-
 import { fetchEntries } from '@utils/contentfulPosts'
 
 import Header from '@components/Header'
-import Footer from '@components/Footer'
-import Post from '@components/Post'
+import Services from '@components/Services'
 
-export default function Home({ posts }) {
+export default function Home({services}) {
   return (
     <div className="container">
       <Head>
         <title>Next + Contentful Starter</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet"></link>
       </Head>
 
-      <main>
+      <main className="flex flex-col max-h-screen">
         <Header />
-        <div className="posts">
-          {posts.map((p) => {
-            return <Post key={p.date} date={p.date} image={p.image.fields} title={p.title} />
-          })}
-        </div>
+        <Services services={services}/>
       </main>
-
-      <Footer />
-
-      <style jsx>{`
-        .container {
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .posts {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          justify-content: center;
-        }
-      `}</style>
 
       <style jsx global>{`
         html,
@@ -58,10 +27,36 @@ export default function Home({ posts }) {
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
             Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+          background: #161616;
+          height: 100vh;
+        }
+
+        h1 {
+          margin: 0;
         }
 
         * {
           box-sizing: border-box;
+        }
+
+        .carousel {
+          cursor: grab;
+          height: 100%;
+          display: flex;
+          overflow: hidden;
+        }
+
+        .inner-carousel {
+          display: flex;
+        }
+
+        .item {
+          min-width: 22rem;
+          height: 100%;
+          max-height: calc(100vh - 5rem);
+          overflow: hidden;
+          border-radius: 1rem;
+          margin-left: 10px;
         }
       `}</style>
     </div>
@@ -70,13 +65,13 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const res = await fetchEntries()
-  const posts = await res.map((p) => {
+  const services = await res.map((p) => {
     return p.fields
   })
 
   return {
     props: {
-      posts,
+      services,
     },
   }
 }
